@@ -28,7 +28,7 @@ function App() {
       <header className={`header ${scrolled ? 'scrolled' : ''}`}>
         <div className="header-container">
           <div className="logo">
-            <span className="logo-text">Toufiquzzaman</span>
+            <span className="logo-text">Toufiquzzaman</span>   
             <span className="logo-dot">.</span>
           </div>
 
