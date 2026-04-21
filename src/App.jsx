@@ -1,214 +1,333 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 
 function App() {
-  const [activeSection, setActiveSection] = useState('about')
+  const [activeNav, setActiveNav] = useState('home')
+  const [scrolled, setScrolled] = useState(false)
   const [hoveredSkill, setHoveredSkill] = useState(null)
+  const [hoveredProject, setHoveredProject] = useState(null)
+
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
+      setScrolled(window.scrollY > 50)
+    })
+  }, [])
+
+  const scrollToSection = (id) => {
+    setActiveNav(id)
+    const element = document.getElementById(id)
+    element?.scrollIntoView({ behavior: 'smooth' })
+  }
 
   return (
-    <div className="cyber-portfolio">
-      {/* Background Effects */}
-      <div className="matrix-bg"></div>
-      <div className="cyber-grid"></div>
-      <div className="glow-orb glow-1"></div>
-      <div className="glow-orb glow-2"></div>
+    <div className="portfolio">
+      {/* Background Animation */}
+      <div className="bg-animation"></div>
 
-      {/* Navigation */}
-      <nav className="cyber-nav">
-        <div className="nav-container">
-          <div className="logo-wrapper">
-            <h1 className="cyber-logo">T0UFIQ</h1>
-            <span className="logo-accent">[ DEVELOPER ]</span>
+      {/* Header Navigation */}
+      <header className={`header ${scrolled ? 'scrolled' : ''}`}>
+        <div className="header-container">
+          <div className="logo">
+            <span className="logo-text">Toufiq</span>
+            <span className="logo-dot">.</span>
           </div>
-          <ul className="cyber-nav-links">
-            <li><button className={`nav-btn ${activeSection === 'about' ? 'active' : ''}`} onClick={() => setActiveSection('about')}>about.exe</button></li>
-            <li><button className={`nav-btn ${activeSection === 'skills' ? 'active' : ''}`} onClick={() => setActiveSection('skills')}>skills.sys</button></li>
-            <li><button className={`nav-btn ${activeSection === 'projects' ? 'active' : ''}`} onClick={() => setActiveSection('projects')}>projects.app</button></li>
-            <li><button className={`nav-btn ${activeSection === 'contact' ? 'active' : ''}`} onClick={() => setActiveSection('contact')}>contact.io</button></li>
-          </ul>
+
+          <nav className="nav-menu">
+            <button 
+              className={`nav-link ${activeNav === 'home' ? 'active' : ''}`}
+              onClick={() => scrollToSection('home')}
+            >
+              Home
+            </button>
+            <button 
+              className={`nav-link ${activeNav === 'about' ? 'active' : ''}`}
+              onClick={() => scrollToSection('about')}
+            >
+              About
+            </button>
+            <button 
+              className={`nav-link ${activeNav === 'services' ? 'active' : ''}`}
+              onClick={() => scrollToSection('services')}
+            >
+              Services
+            </button>
+            <button 
+              className={`nav-link ${activeNav === 'projects' ? 'active' : ''}`}
+              onClick={() => scrollToSection('projects')}
+            >
+              Projects
+            </button>
+            <button 
+              className={`nav-link ${activeNav === 'contact' ? 'active' : ''}`}
+              onClick={() => scrollToSection('contact')}
+            >
+              Contact
+            </button>
+          </nav>
+
+          <a href="#contact" className="cta-button">Get In Touch</a>
         </div>
-      </nav>
+      </header>
 
       {/* Hero Section */}
-      <section className="cyber-hero">
+      <section id="home" className="hero">
         <div className="hero-content">
-          <div className="terminal-text">
-            <span className="cmd-symbol">&gt;</span>
-            <h1 className="hero-title">TOUFIQ_SYSTEMS_ONLINE</h1>
+          <div className="hero-text">
+            <h1 className="hero-title">
+              <span className="gradient-text">Full Stack Developer</span> & Tech Enthusiast
+            </h1>
+            <p className="hero-subtitle">
+              Building scalable systems with Java Spring Boot & React. Learning Assembly. Passionate about clean code and innovative solutions.
+            </p>
+            <div className="hero-buttons">
+              <button className="btn btn-primary" onClick={() => scrollToSection('projects')}>
+                View My Work
+              </button>
+              <button className="btn btn-secondary" onClick={() => scrollToSection('contact')}>
+                Let's Connect
+              </button>
+            </div>
           </div>
-          <p className="hero-subtitle">[ Initializing Digital Innovation... ]</p>
-          <div className="hero-stats">
-            <div className="stat"><span className="stat-label">Status:</span> <span className="stat-value">ACTIVE</span></div>
-            <div className="stat"><span className="stat-label">Mode:</span> <span className="stat-value">DEVELOPER</span></div>
-            <div className="stat"><span className="stat-label">Level:</span> <span className="stat-value">EXPERT</span></div>
+          <div className="hero-image">
+            <div className="floating-card card-1">
+              <span className="card-icon">💻</span>
+              <p>Full Stack</p>
+            </div>
+            <div className="floating-card card-2">
+              <span className="card-icon">🚀</span>
+              <p>Scalable</p>
+            </div>
+            <div className="floating-card card-3">
+              <span className="card-icon">⚡</span>
+              <p>Performant</p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Main Content */}
-      <main className="cyber-main">
-        {/* About Section */}
-        {activeSection === 'about' && (
-          <section className="cyber-section about-section">
-            <div className="section-header">
-              <h2 className="section-title">ABOUT_PROTOCOL</h2>
-              <div className="title-accent"></div>
-            </div>
-            <div className="section-content">
-              <div className="about-box">
-                <p className="about-text">
-                  Welcome to my digital domain. I'm a full-stack developer specializing in creating cutting-edge web experiences. 
-                  My expertise spans modern frameworks and emerging technologies that push the boundaries of what's possible.
-                </p>
-                <p className="about-text">
-                  I believe in code that's not just functional, but beautiful. Every project is an opportunity to innovate, 
-                  solve complex problems, and deliver solutions that make a real impact in the digital landscape.
-                </p>
-              </div>
-            </div>
-          </section>
-        )}
+      {/* About Section */}
+      <section id="about" className="section">
+        <div className="container">
+          <div className="section-header">
+            <h2>About Me</h2>
+            <p>Full Stack Developer & Continuous Learner</p>
+          </div>
 
-        {/* Skills Section */}
-        {activeSection === 'skills' && (
-          <section className="cyber-section skills-section">
-            <div className="section-header">
-              <h2 className="section-title">SKILL_DATABASE</h2>
-              <div className="title-accent"></div>
-            </div>
-            <div className="skills-matrix">
-              <div className="skill-group" onMouseEnter={() => setHoveredSkill('frontend')} onMouseLeave={() => setHoveredSkill(null)}>
-                <div className={`skill-box ${hoveredSkill === 'frontend' ? 'hovered' : ''}`}>
-                  <div className="skill-icon">⚛️</div>
-                  <h3>FRONTEND</h3>
-                  <div className="skill-list">
-                    <span className="skill-item">React</span>
-                    <span className="skill-item">JavaScript</span>
-                    <span className="skill-item">TypeScript</span>
-                    <span className="skill-item">CSS3</span>
-                  </div>
+          <div className="about-content">
+            <div className="about-text">
+              <p>
+                I'm a <strong>full-stack developer</strong> passionate about building <strong>scalable, performant systems</strong> from the ground up. On the backend, I architect robust solutions using <strong>Java and Spring Boot</strong>, designing systems that don't just work—they <em>scale</em>.
+              </p>
+              <p>
+                On the frontend, I craft <strong>intuitive, clean interfaces</strong> with <strong>React</strong>, turning complex requirements into seamless user experiences. What drives me is understanding how systems work at every level—from high-level microservices patterns down to <strong>low-level Assembly programming</strong>.
+              </p>
+              <p>
+                I thrive on solving challenging problems and shipping products that users love. Every project is an opportunity to learn, innovate, and push my boundaries.
+              </p>
+              <div className="about-stats">
+                <div className="stat-item">
+                  <h3>5+</h3>
+                  <p>Projects</p>
                 </div>
-              </div>
-              <div className="skill-group" onMouseEnter={() => setHoveredSkill('backend')} onMouseLeave={() => setHoveredSkill(null)}>
-                <div className={`skill-box ${hoveredSkill === 'backend' ? 'hovered' : ''}`}>
-                  <div className="skill-icon">🔧</div>
-                  <h3>BACKEND</h3>
-                  <div className="skill-list">
-                    <span className="skill-item">Node.js</span>
-                    <span className="skill-item">Express</span>
-                    <span className="skill-item">Python</span>
-                    <span className="skill-item">APIs</span>
-                  </div>
+                <div className="stat-item">
+                  <h3>3+</h3>
+                  <p>Languages</p>
                 </div>
-              </div>
-              <div className="skill-group" onMouseEnter={() => setHoveredSkill('tools')} onMouseLeave={() => setHoveredSkill(null)}>
-                <div className={`skill-box ${hoveredSkill === 'tools' ? 'hovered' : ''}`}>
-                  <div className="skill-icon">🛠️</div>
-                  <h3>TOOLS</h3>
-                  <div className="skill-list">
-                    <span className="skill-item">Git</span>
-                    <span className="skill-item">Docker</span>
-                    <span className="skill-item">Webpack</span>
-                    <span className="skill-item">VS Code</span>
-                  </div>
-                </div>
-              </div>
-              <div className="skill-group" onMouseEnter={() => setHoveredSkill('databases')} onMouseLeave={() => setHoveredSkill(null)}>
-                <div className={`skill-box ${hoveredSkill === 'databases' ? 'hovered' : ''}`}>
-                  <div className="skill-icon">🗄️</div>
-                  <h3>DATABASES</h3>
-                  <div className="skill-list">
-                    <span className="skill-item">MongoDB</span>
-                    <span className="skill-item">PostgreSQL</span>
-                    <span className="skill-item">Redis</span>
-                    <span className="skill-item">Firebase</span>
-                  </div>
+                <div className="stat-item">
+                  <h3>10+</h3>
+                  <p>Technologies</p>
                 </div>
               </div>
             </div>
-          </section>
-        )}
+            <div className="about-image">
+              <div className="image-placeholder">
+                <span>👨‍💻</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-        {/* Projects Section */}
-        {activeSection === 'projects' && (
-          <section className="cyber-section projects-section">
-            <div className="section-header">
-              <h2 className="section-title">PROJECT_VAULT</h2>
-              <div className="title-accent"></div>
-            </div>
-            <div className="projects-grid">
-              <div className="project-box">
-                <div className="project-header">[ PROJECT_001 ]</div>
-                <h3>AI Chat System</h3>
-                <p>Advanced conversational AI platform with real-time processing and machine learning integration.</p>
-                <div className="project-tags">
-                  <span>#React</span>
-                  <span>#AI</span>
-                  <span>#WebSocket</span>
-                </div>
-              </div>
-              <div className="project-box">
-                <div className="project-header">[ PROJECT_002 ]</div>
-                <h3>Blockchain Explorer</h3>
-                <p>Interactive blockchain visualization tool with real-time data analysis and transaction tracking.</p>
-                <div className="project-tags">
-                  <span>#Web3</span>
-                  <span>#Blockchain</span>
-                  <span>#Data-Viz</span>
-                </div>
-              </div>
-              <div className="project-box">
-                <div className="project-header">[ PROJECT_003 ]</div>
-                <h3>Cybersecurity Dashboard</h3>
-                <p>Comprehensive security monitoring system with threat detection and real-time alerts.</p>
-                <div className="project-tags">
-                  <span>#Security</span>
-                  <span>#Dashboard</span>
-                  <span>#Analytics</span>
-                </div>
-              </div>
-              <div className="project-box">
-                <div className="project-header">[ PROJECT_004 ]</div>
-                <h3>Neural Network Trainer</h3>
-                <p>Machine learning framework for training and deploying neural networks with visualization tools.</p>
-                <div className="project-tags">
-                  <span>#ML</span>
-                  <span>#Python</span>
-                  <span>#TensorFlow</span>
-                </div>
-              </div>
-            </div>
-          </section>
-        )}
+      {/* Services Section */}
+      <section id="services" className="section section-dark">
+        <div className="container">
+          <div className="section-header">
+            <h2>What I Do</h2>
+            <p>Services & Expertise</p>
+          </div>
 
-        {/* Contact Section */}
-        {activeSection === 'contact' && (
-          <section className="cyber-section contact-section">
-            <div className="section-header">
-              <h2 className="section-title">CONTACT_GATEWAY</h2>
-              <div className="title-accent"></div>
+          <div className="services-grid">
+            <div className="service-card">
+              <div className="service-icon">🎨</div>
+              <h3>Frontend Development</h3>
+              <p>Creating beautiful, responsive interfaces with React and modern CSS. Focus on user experience and performance.</p>
             </div>
-            <div className="contact-content">
-              <p className="contact-text">Initiating secure connection...</p>
-              <div className="contact-channels">
-                <a href="mailto:toufiq@example.com" className="contact-btn">[ EMAIL ]</a>
-                <a href="#" className="contact-btn">[ GITHUB ]</a>
-                <a href="#" className="contact-btn">[ LINKEDIN ]</a>
+            <div className="service-card">
+              <div className="service-icon">⚙️</div>
+              <h3>Backend Systems</h3>
+              <p>Building robust APIs and microservices with Java Spring Boot. Scalable architecture and clean code practices.</p>
+            </div>
+            <div className="service-card">
+              <div className="service-icon">🔗</div>
+              <h3>Full Stack Solutions</h3>
+              <p>End-to-end development from database design to deployment. Complete project ownership and delivery.</p>
+            </div>
+            <div className="service-card">
+              <div className="service-icon">🧠</div>
+              <h3>System Design</h3>
+              <p>Low-level programming expertise with Assembly. Understanding of hardware-software interaction.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Skills Section */}
+      <section className="section">
+        <div className="container">
+          <div className="section-header">
+            <h2>Technical Skills</h2>
+            <p>Languages, Frameworks & Tools</p>
+          </div>
+
+          <div className="skills-grid">
+            {[
+              { category: 'Frontend', skills: ['React', 'JavaScript', 'TypeScript', 'CSS3', 'HTML5'], icon: '⚛️' },
+              { category: 'Backend', skills: ['Java', 'Spring Boot', 'Node.js', 'Express', 'Python'], icon: '🔧' },
+              { category: 'Databases', skills: ['MongoDB', 'PostgreSQL', 'Redis', 'Firebase'], icon: '🗄️' },
+              { category: 'Tools', skills: ['Git', 'Docker', 'VS Code', 'Webpack'], icon: '🛠️' },
+            ].map((skill, idx) => (
+              <div 
+                key={idx}
+                className="skill-card"
+                onMouseEnter={() => setHoveredSkill(idx)}
+                onMouseLeave={() => setHoveredSkill(null)}
+              >
+                <div className={`skill-card-inner ${hoveredSkill === idx ? 'hovered' : ''}`}>
+                  <div className="skill-icon-large">{skill.icon}</div>
+                  <h3>{skill.category}</h3>
+                  <div className="skill-tags">
+                    {skill.skills.map((s, i) => (
+                      <span key={i} className="skill-tag">{s}</span>
+                    ))}
+                  </div>
+                </div>
               </div>
-              <div className="connection-status">
-                <div className="status-light"></div>
-                <span>Connection Available</span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Projects Section */}
+      <section id="projects" className="section section-dark">
+        <div className="container">
+          <div className="section-header">
+            <h2>Featured Projects</h2>
+            <p>Recent Work & Achievements</p>
+          </div>
+
+          <div className="projects-grid">
+            {[
+              {
+                title: 'AI Chat System',
+                desc: 'Advanced conversational AI platform with real-time processing and ML integration.',
+                tags: ['React', 'AI', 'WebSocket'],
+                icon: '🤖'
+              },
+              {
+                title: 'Blockchain Explorer',
+                desc: 'Interactive blockchain visualization tool with real-time data analysis and tracking.',
+                tags: ['Web3', 'Blockchain', 'Data-Viz'],
+                icon: '⛓️'
+              },
+              {
+                title: 'E-Commerce Platform',
+                desc: 'Full-stack e-commerce solution with Spring Boot backend and React frontend.',
+                tags: ['Java', 'React', 'PostgreSQL'],
+                icon: '🛍️'
+              },
+              {
+                title: 'Cloud Dashboard',
+                desc: 'Comprehensive monitoring system for cloud infrastructure with real-time alerts.',
+                tags: ['Dashboard', 'Analytics', 'Cloud'],
+                icon: '☁️'
+              },
+            ].map((project, idx) => (
+              <div 
+                key={idx}
+                className="project-card"
+                onMouseEnter={() => setHoveredProject(idx)}
+                onMouseLeave={() => setHoveredProject(null)}
+              >
+                <div className={`project-card-content ${hoveredProject === idx ? 'hovered' : ''}`}>
+                  <div className="project-icon">{project.icon}</div>
+                  <h3>{project.title}</h3>
+                  <p>{project.desc}</p>
+                  <div className="project-tags">
+                    {project.tags.map((tag, i) => (
+                      <span key={i} className="tag">{tag}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="section">
+        <div className="container">
+          <div className="section-header">
+            <h2>Let's Work Together</h2>
+            <p>Get In Touch & Let's Create Something Amazing</p>
+          </div>
+
+          <div className="contact-content">
+            <div className="contact-info">
+              <div className="info-item">
+                <span className="info-icon">📧</span>
+                <div>
+                  <h4>Email</h4>
+                  <a href="mailto:toufiq@example.com">toufiq@example.com</a>
+                </div>
+              </div>
+              <div className="info-item">
+                <span className="info-icon">💼</span>
+                <div>
+                  <h4>LinkedIn</h4>
+                  <a href="#" target="_blank" rel="noopener noreferrer">linkedin.com/in/toufiq</a>
+                </div>
+              </div>
+              <div className="info-item">
+                <span className="info-icon">🐙</span>
+                <div>
+                  <h4>GitHub</h4>
+                  <a href="#" target="_blank" rel="noopener noreferrer">github.com/toufiq</a>
+                </div>
               </div>
             </div>
-          </section>
-        )}
-      </main>
+
+            <form className="contact-form">
+              <div className="form-group">
+                <input type="text" placeholder="Your Name" required />
+              </div>
+              <div className="form-group">
+                <input type="email" placeholder="Your Email" required />
+              </div>
+              <div className="form-group">
+                <textarea placeholder="Your Message" rows="5" required></textarea>
+              </div>
+              <button type="submit" className="btn btn-primary">Send Message</button>
+            </form>
+          </div>
+        </div>
+      </section>
 
       {/* Footer */}
-      <footer className="cyber-footer">
-        <div className="footer-content">
-          <span>© 2026 TOUFIQ SYSTEMS</span>
-          <span className="footer-accent">[ ENCRYPTED ]</span>
+      <footer className="footer">
+        <div className="container">
+          <p>&copy; 2026 Toufiq. All rights reserved.</p>
+          <p className="footer-text">Designed & Built with <span className="heart">💜</span> for web enthusiasts.</p>
         </div>
       </footer>
     </div>
