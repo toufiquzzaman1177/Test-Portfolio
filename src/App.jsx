@@ -296,7 +296,7 @@ function App() {
                 <span className="info-icon">💼</span>
                 <div>
                   <h4>LinkedIn</h4>
-                  <a href="#" target="_blank" rel="noopener noreferrer">linkedin.com/in/toufiq</a>
+                  <a href="#" target="_blank" rel="noopener noreferrer">linkedin.com/in/md-toufiquzzaman-027013324</a>
                 </div>
               </div>
               <div className="info-item">
