@@ -74,7 +74,7 @@ function App() {
         <div className="hero-content">
           <div className="hero-text">
             <h1 className="hero-title">
-              <span className="gradient-text">Full Stack Developer</span> & Tech Enthusiast
+              <span className="gradient-text">Software Developer</span> & Tech Enthusiast
             </h1>
             <p className="hero-subtitle">
               Building scalable systems with Java Spring Boot & React. Learning Assembly. Passionate about clean code and innovative solutions.
@@ -191,10 +191,11 @@ function App() {
 
           <div className="skills-grid">
             {[
-              { category: 'Frontend', skills: ['React', 'JavaScript', 'TypeScript', 'CSS3', 'HTML5'], icon: '⚛️' },
-              { category: 'Backend', skills: ['Java', 'Spring Boot', 'Node.js', 'Express', 'Python'], icon: '🔧' },
-              { category: 'Databases', skills: ['MongoDB', 'PostgreSQL', 'Redis', 'Firebase'], icon: '🗄️' },
-              { category: 'Tools', skills: ['Git', 'Docker', 'VS Code', 'Webpack'], icon: '🛠️' },
+               { category: 'Language', skills: ['C', 'C++', 'Assembly Language'], icon: '⚛️' },
+              { category: 'Frontend', skills: ['React', 'JavaScript', 'CSS3', 'HTML5'], icon: '⚛️' },
+              { category: 'Backend', skills: ['Java', 'Spring Boot', 'Node.js', 'PHP', 'Laravel'], icon: '🔧' },
+              { category: 'Databases', skills: ['MongoDB', 'PostgreSQL', 'MySQL', 'Oracle'], icon: '🗄️' },
+              { category: 'Tools', skills: ['Git', 'Docker', 'VS Code', 'Intellij Idea','Webpack'], icon: '🛠️' },
             ].map((skill, idx) => (
               <div 
                 key={idx}
@@ -302,7 +303,7 @@ function App() {
                 <span className="info-icon">🐙</span>
                 <div>
                   <h4>GitHub</h4>
-                  <a href="#" target="_blank" rel="noopener noreferrer">github.com/toufiq</a>
+                  <a href="#" target="_blank" rel="noopener noreferrer">github.com/toufiquzzaman1177</a>
                 </div>
               </div>
             </div>
@@ -327,7 +328,6 @@ function App() {
       <footer className="footer">
         <div className="container">
           <p>&copy; 2026 Toufiq. All rights reserved.</p>
-          <p className="footer-text">Designed & Built with <span className="heart">💜</span> for web enthusiasts.</p>
         </div>
       </footer>
     </div>
