@@ -289,7 +289,7 @@ function App() {
                 <span className="info-icon">📧</span>
                 <div>
                   <h4>Email</h4>
-                  <a href="mailto:toufiq@example.com">toufiq@example.com</a>
+                  <a href="mailto:toufiquzzaman1177@gmail.com">toufiquzzaman1177@gmail.com</a>
                 </div>
               </div>
               <div className="info-item">
