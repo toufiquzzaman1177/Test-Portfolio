@@ -296,14 +296,14 @@ function App() {
                 <span className="info-icon">💼</span>
                 <div>
                   <h4>LinkedIn</h4>
-                  <a href="#" target="_blank" rel="noopener noreferrer">linkedin.com/in/md-toufiquzzaman-027013324</a>
+                  <a href="https://www.linkedin.com/in/md-toufiquzzaman-027013324" target="_blank" rel="noopener noreferrer">md-toufiquzzaman</a>
                 </div>
               </div>
               <div className="info-item">
                 <span className="info-icon">🐙</span>
                 <div>
                   <h4>GitHub</h4>
-                  <a href="#" target="_blank" rel="noopener noreferrer">github.com/toufiquzzaman1177</a>
+                  <a href="https://github.com/toufiquzzaman1177" target="_blank" rel="noopener noreferrer">toufiquzzaman1177</a>
                 </div>
               </div>
             </div>
