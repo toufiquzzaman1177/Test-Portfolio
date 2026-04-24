@@ -141,7 +141,7 @@ function App() {
             </div>
             <div className="about-image">
               <div className="image-placeholder">
-                <span>👨‍💻</span>
+                <span>👨‍💻</span> 
               </div>
             </div>
           </div>
